@@ -29,6 +29,10 @@
                 </v-list-item-content>
             </v-list-item>
         </v-list>
+
+        <div class="text-center ">
+            <v-btn small rounded outlined color="primary" dark>Go Online</v-btn>
+        </div>
     </v-navigation-drawer>
 
     <v-app-bar app flat class="grey lighten-5">
@@ -40,9 +44,8 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
 
-        
-         <Chat class="mx-3"/>
-        <v-btn   depressed color="grey lighten-5" @click="$router.push('/')">
+        <Chat class="mx-3" />
+        <v-btn depressed color="grey lighten-5" @click="$router.push('/')">
             <v-icon small right>exit_to_app</v-icon>
         </v-btn>
     </v-app-bar>
@@ -60,7 +63,7 @@ export default {
     props: {
         source: String,
     },
-    components:{
+    components: {
         Chat
     },
     data: () => ({
@@ -85,7 +88,7 @@ export default {
             },
 
         ],
-       
+
     }),
 }
 </script>

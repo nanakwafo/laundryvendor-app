@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
-
+import Service from '../views/Service'
 
 Vue.use(VueRouter)
 
@@ -12,12 +12,37 @@ const routes = [{
 
     children: [{
             path: '/service',
-            name: 'Service',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import ( /* webpackChunkName: "about" */ '../views/Service.vue')
+            component: Service,
+
+
+            children: [{
+                    path: '/',
+                    name: 'List',
+                    // route level code-splitting
+                    // this generates a separate chunk (about.[hash].js) for this route
+                    // which is lazy-loaded when the route is visited.
+                    component: () =>
+                        import ( /* webpackChunkName: "about" */ '../views/service/List.vue'),
+                },
+                {
+                    path: '/add',
+                    name: 'Add',
+                    // route level code-splitting
+                    // this generates a separate chunk (about.[hash].js) for this route
+                    // which is lazy-loaded when the route is visited.
+                    component: () =>
+                        import ( /* webpackChunkName: "about" */ '../views/service/Add.vue'),
+                },
+                {
+                    path: '/edit/:id',
+                    name: 'Edit',
+                    // route level code-splitting
+                    // this generates a separate chunk (about.[hash].js) for this route
+                    // which is lazy-loaded when the route is visited.
+                    component: () =>
+                        import ( /* webpackChunkName: "about" */ '../views/service/Add.vue'),
+                }
+            ]
         },
         {
             path: '/dashboard',

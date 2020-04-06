@@ -45,9 +45,9 @@
         <v-spacer></v-spacer>
 
         <Chat class="mx-3" />
-        <v-btn depressed color="grey lighten-5" @click="$router.push('/')">
-            <v-icon small right>exit_to_app</v-icon>
-        </v-btn>
+      
+            <v-icon  @click="$router.push('/')" small right>exit_to_app</v-icon>
+        
     </v-app-bar>
 
     <v-content class="grey lighten-5">
@@ -68,23 +68,36 @@ export default {
     },
     data: () => ({
         drawer: null,
-        links: [{
-                icon: 'person',
-                text: 'Service',
-                route: '/service'
-            },
-            {
+        links: [
+             {
                 icon: 'dashboard',
                 text: 'Dashboard',
                 route: '/dashboard'
             },
+            {
+                icon: 'local_laundry_service',
+                text: 'Service',
+                route: '/service'
+            },
+             {
+                icon: 'person',
+                text: 'Profile',
+                route: '/profile'
+            },
+           
 
         ],
-        items: [{
+        items: [
+             {
+                title: 'Dashboard'
+            },
+            
+            {
                 title: 'Service'
             },
+           
             {
-                title: 'Dashboard'
+                title: 'Profile'
             },
 
         ],

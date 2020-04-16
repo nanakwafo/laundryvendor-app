@@ -31,7 +31,7 @@
         </v-list>
 
         <div class="text-center ">
-            <v-btn small rounded outlined color="primary" dark>Go Online</v-btn>
+            <v-btn small rounded outlined color="primary" @click="goOnline(1)" dark>Go Online</v-btn>
         </div>
     </v-navigation-drawer>
 
@@ -45,9 +45,9 @@
         <v-spacer></v-spacer>
 
         <Chat class="mx-3" />
-      
-            <v-icon  @click="$router.push('/')" small right>exit_to_app</v-icon>
-        
+
+        <v-icon @click="$router.push('/')" small right>exit_to_app</v-icon>
+
     </v-app-bar>
 
     <v-content class="grey lighten-5">
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import io from 'socket.io-client';
 import Chat from './Chat'
 export default {
     props: {
@@ -66,42 +67,66 @@ export default {
     components: {
         Chat
     },
-    data: () => ({
-        drawer: null,
-        links: [
-             {
-                icon: 'dashboard',
-                text: 'Dashboard',
-                route: '/dashboard'
-            },
-            {
-                icon: 'local_laundry_service',
-                text: 'Service',
-                route: '/service'
-            },
-             {
-                icon: 'person',
-                text: 'Profile',
-                route: '/profile'
-            },
-           
+    data() {
+        return {
+            username: "",
+            socket: io("http://192.168.0.3:5000"),
+            messages: [],
+            users: [],
+            room: "abc123",
 
-        ],
-        items: [
-             {
-                title: 'Dashboard'
-            },
-            
-            {
-                title: 'Service'
-            },
-           
-            {
-                title: 'Profile'
-            },
+            drawer: null,
+            links: [{
+                    icon: 'dashboard',
+                    text: 'Dashboard',
+                    route: '/dashboard'
+                },
+                {
+                    icon: 'local_laundry_service',
+                    text: 'Service',
+                    route: '/service'
+                },
+                {
+                    icon: 'person',
+                    text: 'Profile',
+                    route: '/profile'
+                },
 
-        ],
+            ],
+            items: [{
+                    title: 'Dashboard'
+                },
 
-    }),
+                {
+                    title: 'Service'
+                },
+
+                {
+                    title: 'Profile'
+                },
+
+            ],
+        }
+
+    },
+      methods: {
+        goOnline: function (id) {
+            let vendor = {
+                id: id,
+                online: true
+            };
+            console.log(vendor);
+            this.socket.emit('goOnline', vendor);
+        },
+        goOffline: function (id) {
+            let vendor = {
+                id: id,
+                offline: false
+            };
+            console.log(vendor);
+            this.socket.emit('goOffline', vendor);
+        }
+      
+    },
 }
 </script>

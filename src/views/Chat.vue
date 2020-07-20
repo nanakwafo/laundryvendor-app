@@ -58,7 +58,7 @@ export default {
 
             username: "",
             msgkind:"vendor",
-            socket: io("http://192.168.0.3:5000"),
+            socket: io("http://localhost:3000"),
             messages: [],
             users: [],
             room: "abc123",

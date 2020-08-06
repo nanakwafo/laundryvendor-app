@@ -70,7 +70,7 @@ export default {
     data() {
         return {
             username: "",
-            socket: io("http://localhost:3000"),
+            socket: io("http://3.16.196.105:3000"),
             messages: [],
             users: [],
             room: "abc123",
